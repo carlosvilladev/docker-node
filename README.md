@@ -1,14 +1,12 @@
-# Creating Images
+# Creating images and running containers
 
-#### node-auth
+#### node-auth and mongodb
+* docker-compose.yml
 ```sh
-$ cd microservices/auth
-$ docker build -t kardotjs/node-auth .
+$ cd microservices
+$ docker-compose up -d
 ```
 
-# Creating Containers
 
-#### node-auth
-```sh
-$ docker run -p 3000:3000 --name node-auth kardotjs/node-auth
-```
+# API
+

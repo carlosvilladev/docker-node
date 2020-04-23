@@ -1,0 +1,22 @@
+version: "3"
+services:
+  node-auth:
+    container_name: node-auth
+    build:
+      context: ./auth
+    image: kardotjs/node-auth
+    ports:
+      - "3000:3000"
+    depends_on: 
+      - mongo
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+    restart: always
+
+volumes:
+  mongodata: {}

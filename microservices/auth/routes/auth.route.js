@@ -5,11 +5,10 @@ const auth = require("../middleware/auth");
 
 router.post("/authenticate", async (req, res) => {
   try {
-    const {username, password} = req.body;
-    const user = await User.findOne({ username: username });
-    
+    const user = await User.findOne({ username: req.body.username });
+    console.log(user, User, req.body);
     if(!user) return res.json({ success: false, message: 'Authentication failed. User not found.' });
-    if(user.password != password) return res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+    if(user.password != req.body.password) return res.json({ success: false, message: 'Authentication failed. Wrong password.' });
 
     const token = user.generateAuthToken();
     res.json({
