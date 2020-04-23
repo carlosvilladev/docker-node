@@ -1,0 +1,4 @@
+{
+  "myprivatekey": "myprivatekey",
+  "database" : "mongodb://localhost:27017/nodejsauth"
+}
