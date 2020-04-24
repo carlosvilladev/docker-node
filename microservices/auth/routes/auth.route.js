@@ -8,7 +8,8 @@ router.post("/authenticate", async (req, res) => {
     const user = await User.findOne({ username: req.body.username });
     console.log(user, User, req.body);
     if(!user) return res.json({ success: false, message: 'Authentication failed. User not found.' });
-    if(user.password != req.body.password) return res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+    const passwordCompare = await bcrypt.compare(req.body.password, user.password);
+    if(!passwordCompare) return res.json({ success: false, message: 'Authentication failed. Wrong password.' });
 
     const token = user.generateAuthToken();
     res.json({
